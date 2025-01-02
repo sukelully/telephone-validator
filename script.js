@@ -3,7 +3,9 @@ const clearBtn = document.getElementById('clear-btn');
 const userInput = document.getElementById('user-input');
 
 const validateNumber = () => {
-    console.log(userInput.value);
+    const input = userInput.value;
+    const regex = /([0-9])/g;
+    console.log(input.match(regex));
 }
 
 checkBtn.addEventListener('click', validateNumber);
