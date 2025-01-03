@@ -22,7 +22,7 @@ html, body {
     gap: 1em;
 }
 
-#input-container {
+#display-container {
     background-color: white;
     display: flex;
     flex-direction: column;
@@ -30,6 +30,11 @@ html, body {
     border-radius: 15px;
     padding: 2em 3em;
     gap: 1em;
+}
+
+#results-div {
+    display: none;
+    color: red;
 }
 
 #user-input {
