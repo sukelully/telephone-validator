@@ -3,6 +3,8 @@ const clearBtn = document.getElementById('clear-btn');
 const userInput = document.getElementById('user-input');
 const resultsDiv = document.getElementById('results-div');
 
+const PHONE_REGEX = /^[1]?\s?(\(\d{3}\)|\d{3})\s?-?\d{3}\s?-?\d{4}$/;
+
 const validateNumber = () => {
     const input = userInput.value;
 
@@ -11,29 +13,20 @@ const validateNumber = () => {
         return;
     }
 
-    const regex = /\d?\s?\d{3}\s?-?\d{3}\s?-?\d{4}/g;
-    const match = input.match(regex);
-    const isValid = match ? true : false;
-    console.log(isValid);
-    if (isValid) {
-        console.log(isValid);
-        resultsDiv.textContent = `Valid US number: ${match}`;
-        resultsDiv.style.display = 'block';
-    } else {
-        resultsDiv.textContent = `Invalid US number: ${input}`;
-        resultsDiv.style.display = 'block';
-    }
+    const isValid = PHONE_REGEX.test(input);
+    resultsDiv.textContent = isValid ? `Valid US number: ${input}` : `Invalid US number: ${input}`;
+    resultsDiv.style.display = 'block';
 }
 
 const clearInput = () => {
     userInput.value = '';
-    resultsDiv.style.display = 'none'
+    resultsDiv.style.display = 'none';
     resultsDiv.textContent = '';
 }
 
 checkBtn.addEventListener('click', validateNumber);
-window.addEventListener('keypress', function(e) {
-    if(e.key === 'Enter') {
+window.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
         validateNumber();
     }
 });
