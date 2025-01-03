@@ -11,12 +11,16 @@ const validateNumber = () => {
         return;
     }
 
-    const regex = /\d{3}-\d{3}-\d{4}/g;
-    const isValid = input.match(regex) ? true : false;
+    const regex = /\d?\s?\d{3}\s?-?\d{3}\s?-?\d{4}/g;
+    const match = input.match(regex);
+    const isValid = match ? true : false;
     console.log(isValid);
     if (isValid) {
         console.log(isValid);
-        resultsDiv.textContent = input.match(regex);
+        resultsDiv.textContent = `Valid US number: ${match}`;
+        resultsDiv.style.display = 'block';
+    } else {
+        resultsDiv.textContent = `Invalid US number: ${input}`;
         resultsDiv.style.display = 'block';
     }
 }
@@ -24,6 +28,7 @@ const validateNumber = () => {
 const clearInput = () => {
     userInput.value = '';
     resultsDiv.style.display = 'none'
+    resultsDiv.textContent = '';
 }
 
 checkBtn.addEventListener('click', validateNumber);
